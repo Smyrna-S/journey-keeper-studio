@@ -13,7 +13,7 @@ export function JournalShell({ children }: { children: ReactNode }) {
       <div className="header-tools"><span className="header-token" title="Exploration streak"><Flame /> {stats.streakDays}</span><span className="header-divider" /><Button variant="ink" className="header-token px-0" onClick={openDepot} title="Travel Coins and explorer gear"><Coins /> {stats.totalCoins}</Button><Button variant="ink" size="icon" className="profile-button" onClick={openAuth} aria-label="Explorer account"><UserRound /></Button></div>
     </header>
     <main>{children}</main>
-    <footer className="journal-footer"><Link to="/" className="footer-brand">AUTREL <span className="font-note text-sm ml-2">Go a little further.</span></Link><span>TAMIL NADU, INDIA · A JOURNAL OF SMALL DISCOVERIES</span></footer>
+    <footer className="journal-footer"><Link to="/" className="footer-brand">AUTREL <span className="font-note text-sm ml-2">Go a little further.</span></Link><span>TAMIL NADU, INDIA · A JOURNAL OF SMALL DISCOVERIES · <a href="/photo_credits.txt" target="_blank" rel="noreferrer">Photo credits</a></span></footer>
     <nav className="mobile-nav" aria-label="Mobile navigation">{navigation.map(n => <Link key={n.to} to={n.to} className={path.startsWith(n.to) ? 'active' : ''}><n.icon strokeWidth={1.4}/>{n.label}</Link>)}</nav>
   </div></div>;
 }
