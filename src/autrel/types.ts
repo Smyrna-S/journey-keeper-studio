@@ -18,7 +18,7 @@ export type Destination = {
   description?: string | undefined;
   whySpecial?: string | undefined;
   howToReach?: string | undefined;
-  coordinates?: { lat: number | undefined; lng: number };
+  coordinates?: { lat: number; lng: number } | undefined;
 };
 
 export type JourneyEntry = {
