@@ -160,7 +160,7 @@ export function calculateJourneyStats(journey: JourneyEntry[]): PlayerStats {
     { level: 7, minXP: 3100, maxXP: 4000, title: 'Legendary Explorer' },
   ];
 
-  let currentBracket = XP_LEVEL_BRACKETS[0];
+  let currentBracket = XP_LEVEL_BRACKETS[0] || { level: 1, minXP: 0, maxXP: 250, title: 'Novice Wanderer' };
   for (const bracket of XP_LEVEL_BRACKETS) {
     if (totalXP >= bracket.minXP) {
       currentBracket = bracket;

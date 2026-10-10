@@ -22,7 +22,7 @@ export function getRecommendation(
     (a, b) => (b.coins + b.gemScore) - (a.coins + a.gemScore)
   );
 
-  return sorted[0];
+  return sorted[0] || null;
 }
 
 export function searchDestinations(query: string, filters: Filters = {}): Destination[] {

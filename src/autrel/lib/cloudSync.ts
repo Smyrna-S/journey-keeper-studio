@@ -46,13 +46,13 @@ export async function syncUserData(user: User): Promise<void> {
     visitsSnap.forEach((docSnap) => {
       const data = docSnap.data();
       remoteVisits.push({
-        id: data.destinationId || docSnap.id,
-        destination: data.destinationName,
-        district: data.district,
-        category: data.category || 'Nature',
-        coins: data.coinsAwarded || 150,
-        photoUri: data.proofPhotoUrl,
-        timestamp: new Date(data.visitedAt).getTime() || Date.now(),
+        id: data['destinationId'] || docSnap.id,
+        destination: data['destinationName'],
+        district: data['district'],
+        category: data['category'] || 'Nature',
+        coins: data['coinsAwarded'] || 150,
+        photoUri: data['proofPhotoUrl'],
+        timestamp: new Date(data['visitedAt']).getTime() || Date.now(),
       });
     });
 

@@ -13,12 +13,12 @@ export type Destination = {
   season: string;
   coins: number;
   gemScore: number;
-  image?: string;
-  images?: string[];
-  description?: string;
-  whySpecial?: string;
-  howToReach?: string;
-  coordinates?: { lat: number; lng: number };
+  image?: string | undefined;
+  images?: string[] | undefined;
+  description?: string | undefined;
+  whySpecial?: string | undefined;
+  howToReach?: string | undefined;
+  coordinates?: { lat: number | undefined; lng: number };
 };
 
 export type JourneyEntry = {
@@ -27,8 +27,8 @@ export type JourneyEntry = {
   district: string;
   category: string;
   coins: number;
-  photoUri?: string;
-  timestamp?: number;
+  photoUri?: string | undefined;
+  timestamp?: number | undefined;
 };
 
 export type Badge = {
@@ -40,11 +40,11 @@ export type Badge = {
 };
 
 export type Filters = {
-  difficulty?: string;
-  budget?: string;
-  duration?: string;
-  district?: string;
-  search?: string;
+  difficulty?: string | undefined;
+  budget?: string | undefined;
+  duration?: string | undefined;
+  district?: string | undefined;
+  search?: string | undefined;
 };
 
 export type AdventurerLogEntry = {
@@ -55,6 +55,6 @@ export type AdventurerLogEntry = {
   rating: number; // 1 to 5
   reviewText: string;
   timestamp: number;
-  isUserSubmission?: boolean;
-  explorerRank?: string;
+  isUserSubmission?: boolean | undefined;
+  explorerRank?: string | undefined;
 };

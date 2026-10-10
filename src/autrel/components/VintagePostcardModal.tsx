@@ -64,7 +64,7 @@ export const VintagePostcardModal: React.FC<VintagePostcardModalProps> = ({
     initialNote ||
       (destination
         ? `Greetings from ${destination.destination}! Exploring the heart of ${destination.district} District—the architectural mastery and serene atmosphere here are beyond words.`
-        : NOTE_PRESETS[0])
+        : (NOTE_PRESETS[0] || 'Greetings from Tamil Nadu!'))
   );
   const [expeditionDate, setExpeditionDate] = useState<string>(() => {
     const d = latestEntry?.timestamp ? new Date(latestEntry.timestamp) : new Date();

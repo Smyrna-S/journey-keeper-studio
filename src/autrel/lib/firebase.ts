@@ -4,13 +4,13 @@ import { getFirestore, doc, getDocFromServer } from 'firebase/firestore';
 import firebaseConfig from '../firebase-applet-config.json';
 
 // Support Vite environment variables (VITE_FIREBASE_*) with fallback to firebase-applet-config.json
-const apiKey = import.meta.env.VITE_FIREBASE_API_KEY || firebaseConfig.apiKey;
-const authDomain = import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || firebaseConfig.authDomain;
-const projectId = import.meta.env.VITE_FIREBASE_PROJECT_ID || firebaseConfig.projectId;
-const storageBucket = import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || firebaseConfig.storageBucket;
-const messagingSenderId = import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || firebaseConfig.messagingSenderId;
-const appId = import.meta.env.VITE_FIREBASE_APP_ID || firebaseConfig.appId;
-const firestoreDatabaseId = import.meta.env.VITE_FIREBASE_DATABASE_ID || firebaseConfig.firestoreDatabaseId;
+const apiKey = import.meta.env['VITE_FIREBASE_API_KEY'] || firebaseConfig.apiKey;
+const authDomain = import.meta.env['VITE_FIREBASE_AUTH_DOMAIN'] || firebaseConfig.authDomain;
+const projectId = import.meta.env['VITE_FIREBASE_PROJECT_ID'] || firebaseConfig.projectId;
+const storageBucket = import.meta.env['VITE_FIREBASE_STORAGE_BUCKET'] || firebaseConfig.storageBucket;
+const messagingSenderId = import.meta.env['VITE_FIREBASE_MESSAGING_SENDER_ID'] || firebaseConfig.messagingSenderId;
+const appId = import.meta.env['VITE_FIREBASE_APP_ID'] || firebaseConfig.appId;
+const firestoreDatabaseId = import.meta.env['VITE_FIREBASE_DATABASE_ID'] || firebaseConfig.firestoreDatabaseId;
 
 // Initialize Firebase App
 const app = getApps().length > 0 ? getApp() : initializeApp({

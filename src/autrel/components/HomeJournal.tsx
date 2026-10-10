@@ -13,6 +13,7 @@ export function HomeJournal() {
   const featured = DESTINATIONS.find(d => d.id === 'N04') || DESTINATIONS[0];
   const picks = ['N01','C04','A03'].map(id => DESTINATIONS.find(d => d.id === id)).filter(d => d !== undefined);
   const quest = DESTINATIONS.find(d => d.id === 'A02') || DESTINATIONS[0];
+  if (!featured || !quest) return null;
   return <JournalShell>
     <section className="journal-cover"><img src={coverImage} alt="Misty tea estates in Valparai, Tamil Nadu" className="cover-photo" width={4096} height={2304} fetchPriority="high" /><div className="cover-wash" /><div className="cover-bottom" />
       <div className="cover-content"><div className="eyebrow"><Compass strokeWidth={1.3} /> THE EXPLORER’S JOURNAL · VOL. 01</div><h1>Take the road<br />less travelled.</h1><p className="cover-copy">Some places aren’t on everyone’s list.<br />They’re waiting to be on yours.</p><div className="cover-actions"><Button variant="journal" asChild><Link to="/discover">Discover hidden gems <ArrowRight /></Link></Button><Button variant="paper" onClick={() => { const d = surprise(); navigate({ to:'/destination/$id',params:{id:d.id} }); }}><Sparkles /> Surprise me</Button></div></div>

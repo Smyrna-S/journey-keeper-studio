@@ -198,7 +198,9 @@ export function useDepotStore() {
     (category: EquipmentCategory): EquipmentItem => {
       const activeId = equipped[category] || DEFAULT_EQUIPPED[category];
       const item = getItemById(activeId);
-      return item || getItemById(DEFAULT_EQUIPPED[category]);
+      const resolved = item || getItemById(DEFAULT_EQUIPPED[category]);
+      if (!resolved) throw new Error('Default explorer equipment is missing');
+      return resolved;
     },
     [equipped]
   );

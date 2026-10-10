@@ -18,13 +18,13 @@ export const BinocularsViewerModal: React.FC<BinocularsViewerModalProps> = ({
   equippedBinocular,
   initialDestination,
 }) => {
-  const [selectedGem, setSelectedGem] = useState<Destination>(
+  const [selectedGem, setSelectedGem] = useState<Destination | undefined>(
     initialDestination || DESTINATIONS[1] || DESTINATIONS[0]
   );
   const [zoomLevel, setZoomLevel] = useState<number>(1.6);
   const [focusFilter, setFocusFilter] = useState<boolean>(true);
 
-  if (!isOpen) return null;
+  if (!isOpen || !selectedGem) return null;
 
   const isNightGlass = equippedBinocular.id === 'bino_celestial_glass';
   const isCholaScope = equippedBinocular.id === 'bino_chola_naval_scope';

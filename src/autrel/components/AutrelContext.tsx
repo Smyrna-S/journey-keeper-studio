@@ -47,10 +47,10 @@ export function AutrelProvider({ children }: { children: ReactNode }) {
     };
     reader.readAsDataURL(file);
   }
-  const value: AutrelState = { ...store, startQuest, openAuth: () => setAuthOpen(true), openPostcards: (d) => { if (d) setPostcardDestination(d); setPostcardOpen(true); }, openDepot: () => setDepotOpen(true), surprise: () => { const unvisited = DESTINATIONS.filter(d => !store.journey.some(j => j.id === d.id)); const pool = unvisited.length ? unvisited : DESTINATIONS; return pool[Math.floor(Math.random() * pool.length)] || DESTINATIONS[0]; } };
+  const value: AutrelState = { ...store, startQuest, openAuth: () => setAuthOpen(true), openPostcards: (d) => { if (d) setPostcardDestination(d); setPostcardOpen(true); }, openDepot: () => setDepotOpen(true), surprise: () => { const unvisited = DESTINATIONS.filter(d => !store.journey.some(j => j.id === d.id)); const pool = unvisited.length ? unvisited : DESTINATIONS; const destination = pool[Math.floor(Math.random() * pool.length)] || DESTINATIONS[0]; if (!destination) throw new Error('The destination collection is empty'); return destination; } };
   return <Context.Provider value={value}>
     {children}
-    {mounted && <Suspense fallback={null}><OriginalServices authOpen={authOpen} postcardOpen={postcardOpen} depotOpen={depotOpen} destination={postcardDestination} closeAuth={() => setAuthOpen(false)} closePostcard={() => setPostcardOpen(false)} closeDepot={() => setDepotOpen(false)} /></Suspense>}
+    {mounted && postcardDestination && <Suspense fallback={null}><OriginalServices authOpen={authOpen} postcardOpen={postcardOpen} depotOpen={depotOpen} destination={postcardDestination} closeAuth={() => setAuthOpen(false)} closePostcard={() => setPostcardOpen(false)} closeDepot={() => setDepotOpen(false)} /></Suspense>}
     <Dialog.Root open={Boolean(quest)} onOpenChange={open => { if (!open) setQuest(null); }}><Dialog.Portal><Dialog.Overlay className="dialog-overlay fixed inset-0 z-50" /><Dialog.Content className="dialog-paper fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2">
       <Dialog.Close asChild><Button variant="ink" size="icon" className="dialog-close" aria-label="Close quest"><X /></Button></Dialog.Close>
       <div className="eyebrow text-rust"><Leaf /> Field quest {quest?.id}</div>
