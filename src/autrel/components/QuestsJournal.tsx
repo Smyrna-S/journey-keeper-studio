@@ -1,0 +1,12 @@
+import { useState } from 'react';
+import { Coins, Compass, Leaf, Check, Sparkles, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { JournalShell } from './JournalShell';
+import { useAutrel } from './AutrelContext';
+import { DESTINATIONS } from '../data/destinations';
+import { destinationImage } from '../lib/media';
+export function QuestsJournal(){
+ const {journey,startQuest} = useAutrel(); const [tab,setTab]=useState('Available');
+ const filtered=DESTINATIONS.filter(d=>tab==='Completed' ? journey.some(j=>j.id===d.id):!journey.some(j=>j.id===d.id));
+ return <JournalShell><div className="page-heading"><div><div className="eyebrow text-rust">THE FIELD NOTEBOOK · CHAPTER 02</div><h1>Quests.</h1><p>Small adventures. Big discoveries.</p></div><Compass className="size-12 text-olive" strokeWidth={1}/></div><div className="filter-bar"><div className="category-tabs">{['Available','Completed'].map(t=><Button key={t} variant={tab===t?'journal':'ink'} onClick={()=>setTab(t)}>{t}</Button>)}</div><span className="eyebrow text-muted-foreground">{filtered.length} FIELD QUESTS</span></div><div className="quest-list">{filtered.length? filtered.map((d,i)=><article className="quest-row" key={d.id}><div className="stamp-circle">{tab==='Completed'?<Check/>:<Leaf strokeWidth={1}/>}</div><div><div className="eyebrow text-rust">FIELD QUEST {String(i+1).padStart(2,'0')} · {d.category}</div><h2>{d.destination}</h2><p>{d.mission}</p><div className="reward-line"><span><Coins/>+{d.coins}</span><span><Sparkles/>+{d.coins*2+d.gemScore*10} XP</span><span className="text-muted-foreground">{d.difficulty} · {d.duration}</span></div><Button variant={tab==='Completed'?'paper':'journal'} onClick={()=>startQuest(d)}>{tab==='Completed'?'Explore again':'Accept quest'}<ArrowRight/></Button></div><div className="quest-photo"><div className="photo-tape"/><img src={destinationImage(d)} alt={d.destination} loading="lazy"/></div></article>):<div className="empty-state"><Compass/><h2>Your first story is waiting.</h2><p>Complete a field quest to collect your first memory.</p><Button variant="journal" onClick={()=>setTab('Available')} className="mt-5">Find a quest <ArrowRight/></Button></div>}</div></JournalShell>;
+}

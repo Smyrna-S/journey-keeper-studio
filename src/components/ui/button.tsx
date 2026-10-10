@@ -10,6 +10,10 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        journal: "journal-button bg-primary text-primary-foreground hover:bg-primary/90",
+        paper: "journal-button border border-border bg-card/65 text-foreground hover:bg-card",
+        ink: "journal-button text-primary hover:bg-accent",
+        rust: "journal-button bg-rust text-primary-foreground hover:bg-rust/90",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
           "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",

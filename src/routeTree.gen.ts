@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as JourneyRouteImport } from './routes/journey'
+import { Route as PassportRouteImport } from './routes/passport'
+import { Route as PostcardsRouteImport } from './routes/postcards'
+import { Route as QuestsRouteImport } from './routes/quests'
+import { Route as DestinationIdRouteImport } from './routes/destination.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JourneyRoute = JourneyRouteImport.update({
+  id: '/journey',
+  path: '/journey',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PassportRoute = PassportRouteImport.update({
+  id: '/passport',
+  path: '/passport',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PostcardsRoute = PostcardsRouteImport.update({
+  id: '/postcards',
+  path: '/postcards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuestsRoute = QuestsRouteImport.update({
+  id: '/quests',
+  path: '/quests',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DestinationIdRoute = DestinationIdRouteImport.update({
+  id: '/destination/$id',
+  path: '/destination/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
+  '/journey': typeof JourneyRoute
+  '/passport': typeof PassportRoute
+  '/postcards': typeof PostcardsRoute
+  '/quests': typeof QuestsRoute
+  '/destination/$id': typeof DestinationIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
+  '/journey': typeof JourneyRoute
+  '/passport': typeof PassportRoute
+  '/postcards': typeof PostcardsRoute
+  '/quests': typeof QuestsRoute
+  '/destination/$id': typeof DestinationIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
+  '/journey': typeof JourneyRoute
+  '/passport': typeof PassportRoute
+  '/postcards': typeof PostcardsRoute
+  '/quests': typeof QuestsRoute
+  '/destination/$id': typeof DestinationIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/discover'
+    | '/journey'
+    | '/passport'
+    | '/postcards'
+    | '/quests'
+    | '/destination/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/discover'
+    | '/journey'
+    | '/passport'
+    | '/postcards'
+    | '/quests'
+    | '/destination/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/discover'
+    | '/journey'
+    | '/passport'
+    | '/postcards'
+    | '/quests'
+    | '/destination/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DiscoverRoute: typeof DiscoverRoute
+  JourneyRoute: typeof JourneyRoute
+  PassportRoute: typeof PassportRoute
+  PostcardsRoute: typeof PostcardsRoute
+  QuestsRoute: typeof QuestsRoute
+  DestinationIdRoute: typeof DestinationIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journey': {
+      id: '/journey'
+      path: '/journey'
+      fullPath: '/journey'
+      preLoaderRoute: typeof JourneyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/passport': {
+      id: '/passport'
+      path: '/passport'
+      fullPath: '/passport'
+      preLoaderRoute: typeof PassportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/postcards': {
+      id: '/postcards'
+      path: '/postcards'
+      fullPath: '/postcards'
+      preLoaderRoute: typeof PostcardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quests': {
+      id: '/quests'
+      path: '/quests'
+      fullPath: '/quests'
+      preLoaderRoute: typeof QuestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destination/$id': {
+      id: '/destination/$id'
+      path: '/destination/$id'
+      fullPath: '/destination/$id'
+      preLoaderRoute: typeof DestinationIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DiscoverRoute: DiscoverRoute,
+  JourneyRoute: JourneyRoute,
+  PassportRoute: PassportRoute,
+  PostcardsRoute: PostcardsRoute,
+  QuestsRoute: QuestsRoute,
+  DestinationIdRoute: DestinationIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
