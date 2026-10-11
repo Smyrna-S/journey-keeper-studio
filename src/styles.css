@@ -439,3 +439,52 @@
   .turn-forward, .turn-back, .page-curl, .badge-item .stamp-circle, .margin-note { animation: none !important; }
   .drift-leaf { display:none; }
 }
+
+/* ===== Opening diary spread ===== */
+.diary-spread { display:grid; grid-template-columns:1fr 1fr; min-height:600px; position:relative; }
+.diary-page { position:relative; padding:56px 64px 60px; overflow:hidden; }
+.diary-left { border-right:1px solid var(--border); box-shadow: inset -30px 0 40px -30px oklch(.3 .03 60 / .18); background-image: repeating-linear-gradient(transparent 0 31px, var(--ink-faint) 31px 32px); }
+.diary-right { box-shadow: inset 30px 0 40px -30px oklch(.3 .03 60 / .18); display:flex; flex-direction:column; align-items:flex-start; gap:22px; }
+.diary-date { font-family:var(--font-note); font-size:22px; color:var(--rust); transform:rotate(-2deg); margin-bottom:14px; }
+.diary-left h1 { font-size:56px; line-height:1.06; margin:20px 0; color:var(--cover-ink); }
+.diary-hand { font-family:var(--font-note); font-size:23px; line-height:1.35; max-width:420px; color:var(--foreground); }
+.diary-entry { margin:22px 0 26px; max-width:380px; padding:12px 16px; border-left:2px solid var(--cinnamon); background:color-mix(in oklch,var(--card) 70%,transparent); }
+.diary-entry p { font-size:13px; line-height:1.7; margin-top:6px; }
+.diary-botanical { position:absolute; right:30px; bottom:40px; width:90px; fill:oklch(.6 .08 120 / .14); stroke:var(--olive); stroke-width:1; opacity:.7; stroke-dasharray:600; animation: ink-draw 2.4s ease both .3s; }
+@keyframes ink-draw { from { stroke-dashoffset:600; } to { stroke-dashoffset:0; } }
+.page-number { position:absolute; bottom:18px; font-family:var(--font-display); font-style:italic; font-size:13px; color:var(--muted-foreground); }
+.diary-left .page-number { left:64px; } .diary-right .page-number { right:64px; }
+.vintage-photo { position:relative; display:block; width:100%; background:var(--card); padding:14px 14px 48px; box-shadow:var(--shadow-paper); transform:rotate(1.6deg); transition:transform .4s ease, box-shadow .4s; }
+.vintage-photo:hover { transform:rotate(0) translateY(-4px); box-shadow:0 20px 34px oklch(.2 .02 50 / .26); }
+.vintage-photo img { width:100%; height:330px; object-fit:cover; filter:sepia(.18) saturate(.85); }
+.photo-caption { position:absolute; left:20px; bottom:12px; font-family:var(--font-note); font-size:22px; color:var(--foreground); }
+.photo-washi { top:-12px; left:40%; width:110px; transform:rotate(-4deg); background: repeating-linear-gradient(45deg,var(--washi-1) 0 8px, oklch(.8 .08 70 / .5) 8px 16px); }
+.location-stamp { position:absolute; right:-14px; bottom:22px; display:flex; flex-direction:column; align-items:center; justify-content:center; width:96px; height:96px; border-radius:50%; border:2px double var(--burgundy); color:var(--burgundy); font-family:var(--font-mono); font-size:8px; text-align:center; letter-spacing:.1em; transform:rotate(-14deg); background:oklch(.95 .03 80 / .75); }
+.location-stamp svg { width:14px; margin-bottom:3px; }
+.diary-desc { font-size:14px; line-height:1.8; max-width:480px; }
+.diary-leaves { position:absolute; right:-40px; bottom:-70px; width:220px; pointer-events:none; transform:rotate(-20deg); opacity:.9; }
+@media (max-width: 900px) {
+  .diary-spread { grid-template-columns:1fr; }
+  .diary-page { padding:36px 24px 50px; }
+  .diary-left { border-right:0; border-bottom:1px solid var(--border); }
+  .diary-left h1 { font-size:40px; }
+  .diary-left .page-number { left:24px; } .diary-right .page-number { right:24px; }
+  .vintage-photo img { height:230px; }
+  .location-stamp { right:-6px; width:78px; height:78px; }
+}
+
+/* ===== Quest sheets ===== */
+.quest-row { background-image: repeating-linear-gradient(transparent 0 27px, var(--ink-faint) 27px 28px); border-left:3px double oklch(.6 .12 30 / .35); padding-left:18px; }
+.quest-hand { font-family:var(--font-note); font-size:21px; line-height:1.3; color:var(--foreground); }
+.quest-req { font-family:var(--font-mono); font-size:10px; letter-spacing:.06em; color:var(--muted-foreground); margin:6px 0 10px; }
+.difficulty-marks { display:inline-flex; gap:4px; margin:4px 0; }
+.difficulty-marks i { width:14px; height:14px; border:1.5px solid var(--rust); border-radius:50% 40% 55% 45%; transform:rotate(12deg); }
+.difficulty-marks i.on { background:var(--rust); }
+
+/* ===== Completion: stamp + coins ===== */
+.stamp-impress { animation: stamp-press .7s cubic-bezier(.3,1.6,.5,1) both .15s; }
+.coin-burst { position:relative; height:0; display:flex; justify-content:center; }
+.coin-burst span { position:absolute; top:-40px; color:var(--amber); animation: coin-pop 1.1s cubic-bezier(.2,.8,.3,1) both; animation-delay: calc(var(--i) * 90ms + .5s); }
+.coin-burst svg { width:18px; height:18px; }
+@keyframes coin-pop { 0% { opacity:0; transform:translate(0,0) scale(.4); } 30% { opacity:1; } 100% { opacity:0; transform: translate(calc((var(--i) - 2) * 38px), -90px) scale(1) rotateY(360deg); } }
+@media (prefers-reduced-motion: reduce) { .stamp-impress, .coin-burst span, .diary-botanical { animation:none !important; } .coin-burst { display:none; } }
