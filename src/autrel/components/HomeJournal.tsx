@@ -15,12 +15,29 @@ export function HomeJournal() {
   const quest = DESTINATIONS.find(d => d.id === 'A02') || DESTINATIONS[0];
   if (!featured || !quest) return null;
   return <JournalShell>
-    <section className="journal-cover"><img src={coverImage} alt="Misty tea estates in Valparai, Tamil Nadu" className="cover-photo" width={4096} height={2304} fetchPriority="high" /><div className="cover-wash" /><div className="cover-bottom" />
-      <div className="cover-content"><div className="eyebrow"><Compass strokeWidth={1.3} /> THE EXPLORER’S JOURNAL · VOL. 01</div><h1>Take the road<br />less travelled.</h1><p className="cover-copy">Some places aren’t on everyone’s list.<br />They’re waiting to be on yours.</p><div className="cover-actions"><Button variant="journal" asChild><Link to="/discover">Discover hidden gems <ArrowRight /></Link></Button><Button variant="paper" onClick={() => { const d = surprise(); navigate({ to:'/destination/$id',params:{id:d.id} }); }}><Sparkles /> Surprise me</Button></div></div>
-      <div className="cover-annotation">Somewhere beyond<br />the familiar.<ArrowDownRight strokeWidth={1} /></div>
-      <Link to="/destination/$id" params={{id:featured.id}} className="cover-fieldnote paper" aria-label="Discover Valparai"><img src={destinationImage(featured)} alt="Valparai’s green tea estates" width={500} height={280} /><div className="fieldnote-caption"><span>Valparai, quietly.</span><ArrowUpRight strokeWidth={1} /></div></Link>
-      <div className="cover-coordinate"><MapPin strokeWidth={1.2} /><div>10.3262° N · 76.9554° E<br /><span>VALPARAI · WESTERN GHATS</span></div></div>
-      <img src={leaves} alt="" className="cover-leaves" width={1024} height={1024} />
+    <section className="diary-spread">
+      <div className="diary-page diary-left">
+        <div className="diary-date">{new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}</div>
+        <div className="eyebrow text-rust"><Compass strokeWidth={1.3} /> THE EXPLORER’S JOURNAL · VOL. 01</div>
+        <h1>Take the road<br />less travelled.</h1>
+        <p className="diary-hand">Dear explorer — this journal belongs to whoever turns its pages. Some places aren’t on everyone’s list. They’re waiting to be on yours.</p>
+        <div className="diary-entry"><span className="eyebrow">FIELD NOTE · TODAY</span><p>Mist on the tea slopes above Valparai. Lion-tailed macaques at the road bend. Must return in the rains.</p></div>
+        <div className="cover-actions"><Button variant="journal" asChild><Link to="/discover">Discover hidden gems <ArrowRight /></Link></Button><Button variant="paper" onClick={() => { const d = surprise(); navigate({ to:'/destination/$id',params:{id:d.id} }); }}><Sparkles /> Surprise me</Button></div>
+        <svg className="diary-botanical" viewBox="0 0 120 200" aria-hidden="true"><path d="M60 198 C60 140 55 90 64 20"/><path d="M60 150 C35 140 22 118 18 96 C40 102 55 122 60 150Z"/><path d="M62 112 C86 100 98 80 102 58 C80 64 66 84 62 112Z"/><path d="M63 70 C48 60 42 46 42 32 C56 40 62 54 63 70Z"/></svg>
+        <span className="page-number">i</span>
+      </div>
+      <div className="diary-page diary-right">
+        <Link to="/destination/$id" params={{id:featured.id}} className="vintage-photo" aria-label={`Discover ${featured.destination}`}>
+          <span className="washi photo-washi" aria-hidden="true" />
+          <img src={coverImage} alt="Misty tea estates in Valparai, Tamil Nadu" width={4096} height={2304} fetchPriority="high" />
+          <span className="photo-caption">{featured.destination}, quietly.</span>
+          <span className="location-stamp"><MapPin strokeWidth={1.2}/>VALPARAI<br/>10.32° N · 76.95° E</span>
+        </Link>
+        <p className="diary-desc">{featured.description}</p>
+        <Button variant="journal" asChild><Link to="/destination/$id" params={{id:featured.id}}>Discover {featured.destination} <ArrowUpRight /></Link></Button>
+        <img src={leaves} alt="" className="diary-leaves" width={1024} height={1024} />
+        <span className="page-number">ii</span>
+      </div>
     </section>
     <section className="explorer-strip"><div className="explorer-identity"><div className="stamp-circle"><MountainStamp /></div><div><div className="explorer-rank">{stats.rankTitle} <span className="text-rust text-xs ml-1">Lv. {stats.level}</span></div><div className="explorer-small xp-line"><progress value={stats.levelCurrentXP} max={stats.levelTargetXP} aria-label="Explorer level progress" /> {stats.levelCurrentXP} / {stats.levelTargetXP} XP</div></div></div><span className="strip-quote">“Not all who wander are lost.”</span><Link to="/passport" className="strip-link">Your explorer’s passport <ArrowUpRight /></Link></section>
     <section className="chapter"><div className="chapter-heading"><div className="chapter-title"><span className="chapter-number">01</span><div><h2>A little off the beaten path.</h2><div className="chapter-subtitle">Hidden corners. Unhurried moments. Stories worth finding.</div></div></div><Button variant="ink" asChild className="text-action"><Link to="/discover">Open the atlas <ArrowUpRight /></Link></Button></div><div className="discovery-grid">{picks.map((d,i) => <PhotoPrint key={d.id} destination={d} tag={i===0 ? 'A DIFFERENT KIND OF WILD' : undefined} />)}</div></section>
