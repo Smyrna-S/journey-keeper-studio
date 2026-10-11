@@ -66,7 +66,8 @@ export function AutrelProvider({ children }: { children: ReactNode }) {
     <Dialog.Root open={Boolean(complete)} onOpenChange={open => { if (!open) setComplete(null); }}><Dialog.Portal><Dialog.Overlay className="dialog-overlay fixed inset-0 z-50" /><Dialog.Content className="dialog-paper fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 text-center">
       <Dialog.Close asChild><Button variant="ink" size="icon" className="dialog-close" aria-label="Close reward"><X /></Button></Dialog.Close>
       <div className="eyebrow justify-center text-rust">Discovery complete</div><Dialog.Title className="dialog-title mt-4">{complete?.destination}</Dialog.Title><Dialog.Description className="dialog-description">Another place. Another story. A memory in your passport.</Dialog.Description>
-      <div className="complete-stamp"><Leaf /><span>EXPLORED · AUTREL</span></div>
+      <div className="complete-stamp stamp-impress"><Leaf /><span>EXPLORED · AUTREL</span></div>
+      <div className="coin-burst" aria-hidden="true">{[0,1,2,3,4].map(i=><span key={i} style={{ ['--i' as string]: i }}><Coins /></span>)}</div>
       <div className="reward-line justify-center"><span><Coins /> +{complete?.coins} coins</span><span><Sparkles /> +{complete ? complete.coins * 2 + complete.gemScore * 10 : 0} XP</span></div>
       {BADGES.filter(b => b.isUnlocked(store.journey)).length > 0 && <p className="mt-5 text-xs text-muted-foreground">{BADGES.filter(b => b.isUnlocked(store.journey)).length} explorer stamps collected</p>}
       <Dialog.Close asChild><Button variant="rust" className="mt-6">Continue exploring <Leaf /></Button></Dialog.Close>
