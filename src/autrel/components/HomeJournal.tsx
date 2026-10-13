@@ -24,6 +24,15 @@ export function HomeJournal() {
         <div className="diary-entry"><span className="eyebrow">FIELD NOTE · TODAY</span><p>Mist on the tea slopes above Valparai. Lion-tailed macaques at the road bend. Must return in the rains.</p></div>
         <div className="cover-actions"><Button variant="journal" asChild><Link to="/discover">Discover hidden gems <ArrowRight /></Link></Button><Button variant="paper" onClick={() => { const d = surprise(); navigate({ to:'/destination/$id',params:{id:d.id} }); }}><Sparkles /> Surprise me</Button></div>
         <svg className="diary-botanical" viewBox="0 0 120 200" aria-hidden="true"><path d="M60 198 C60 140 55 90 64 20"/><path d="M60 150 C35 140 22 118 18 96 C40 102 55 122 60 150Z"/><path d="M62 112 C86 100 98 80 102 58 C80 64 66 84 62 112Z"/><path d="M63 70 C48 60 42 46 42 32 C56 40 62 54 63 70Z"/></svg>
+        <div className="scrap-corner" aria-hidden="true">
+          <svg className="scrap-route" viewBox="0 0 200 300"><path d="M20 280 C60 220 10 170 90 140 S170 60 150 10"/></svg>
+          <figure className="scrap-polaroid"><span className="scrap-tape"/><img src={destinationImage(featured)} alt="" loading="lazy"/><figcaption>Valparai · mist</figcaption></figure>
+          <p className="scrap-note">a little further,<br/>a little wonder.</p>
+          <span className="scrap-stamp"><span>FIELD NOTES • TAMIL NADU •</span><Compass strokeWidth={1.2}/></span>
+          <img src={leaves} alt="" className="scrap-leaf" width={1024} height={1024}/>
+          <svg className="scrap-mountain" viewBox="0 0 90 50"><path d="M2 48 L28 14 L40 28 L56 6 L88 48"/><path d="M50 14 L56 6 L62 14"/></svg>
+          <p className="scrap-annot">somewhere worth wandering ↓</p>
+        </div>
         <span className="page-number">i</span>
       </div>
       <div className="diary-page diary-right">
