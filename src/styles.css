@@ -475,7 +475,7 @@
 
 /* ===== Quest sheets ===== */
 .quest-row { background-image: repeating-linear-gradient(transparent 0 27px, var(--ink-faint) 27px 28px); border-left:3px double oklch(.6 .12 30 / .35); padding-left:18px; }
-.quest-hand { font-family:var(--font-note); font-size:21px; line-height:1.3; color:var(--foreground); }
+.quest-row p.quest-hand { font-family:var(--font-note); font-size:21px; line-height:1.3; color:var(--foreground); }
 .quest-req { font-family:var(--font-mono); font-size:10px; letter-spacing:.06em; color:var(--muted-foreground); margin:6px 0 10px; }
 .difficulty-marks { display:inline-flex; gap:4px; margin:4px 0; }
 .difficulty-marks i { width:14px; height:14px; border:1.5px solid var(--rust); border-radius:50% 40% 55% 45%; transform:rotate(12deg); }
