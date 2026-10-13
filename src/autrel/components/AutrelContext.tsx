@@ -10,7 +10,9 @@ import type { Destination } from '../types';
 const OriginalServices = lazy(() => import('./OriginalServices'));
 
 type AutrelState = ReturnType<typeof useJourneyStore> & { startQuest: (d: Destination) => void; openAuth: () => void; openPostcards: (d?: Destination) => void; openDepot: () => void; surprise: () => Destination };
-const Context = createContext<AutrelState | null>(null);
+// Keep one context identity across hot reloads so pages never lose the provider.
+const globalStore = globalThis as unknown as { __autrelContext?: React.Context<AutrelState | null> };
+const Context = globalStore.__autrelContext ?? (globalStore.__autrelContext = createContext<AutrelState | null>(null));
 export function useAutrel() { const state = useContext(Context); if (!state) throw new Error('AUTREL journal context is missing'); return state; }
 export function AutrelProvider({ children }: { children: ReactNode }) {
   const store = useJourneyStore();
