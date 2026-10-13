@@ -80,7 +80,7 @@ export function JournalShell({ children }: { children: ReactNode }) {
             {i === current && <span className="ribbon" aria-hidden="true" />}
           </Link>)}
         </nav>
-        <header className="journal-header paper"><Link to="/" className="brand" aria-label="AUTREL home"><Leaf strokeWidth={1.2} /><span>AUTREL</span></Link>
+        <header className="journal-header paper"><Link to="/" className="brand" aria-label="AUTREL home"><Leaf strokeWidth={1.2} /><span className="brand-text"><span>AUTREL</span><em className="brand-tagline">Take the road less travelled.</em></span></Link>
           <nav aria-label="Main navigation" className="desktop-nav">{navigation.slice(1).map(n => <Link key={n.to} to={n.to} className={`nav-link ${path.startsWith(n.to) ? 'active' : ''}`}>{n.label}</Link>)}</nav>
           <div className="header-tools"><span className="header-token" title="Exploration streak"><Flame /> {stats.streakDays}</span><span className="header-divider" /><Button variant="ink" className="header-token coin-token px-0" onClick={openDepot} title="Travel Coins and explorer gear"><Coins /> {stats.totalCoins}</Button><Button variant="ink" size="icon" className="profile-button" onClick={openAuth} aria-label="Explorer account"><UserRound /></Button></div>
         </header>

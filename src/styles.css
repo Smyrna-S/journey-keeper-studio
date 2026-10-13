@@ -488,3 +488,40 @@
 .coin-burst svg { width:18px; height:18px; }
 @keyframes coin-pop { 0% { opacity:0; transform:translate(0,0) scale(.4); } 30% { opacity:1; } 100% { opacity:0; transform: translate(calc((var(--i) - 2) * 38px), -90px) scale(1) rotateY(360deg); } }
 @media (prefers-reduced-motion: reduce) { .stamp-impress, .coin-burst span, .diary-botanical { animation:none !important; } .coin-burst { display:none; } }
+
+/* ===== Tagline ===== */
+.brand-text { display:flex; flex-direction:column; line-height:1; }
+.brand-tagline { font-family:var(--font-display); font-style:italic; font-size:11px; color:var(--muted-foreground); margin-top:5px; letter-spacing:.02em; white-space:nowrap; }
+
+/* ===== Scrapbook corner ===== */
+@media (min-width: 1200px), (min-width: 600px) and (max-width: 899px) {
+  .diary-left { padding-right:270px; }
+  .scrap-corner { position:absolute; top:70px; right:24px; width:240px; height:440px; }
+  .diary-botanical { display:none; }
+}
+.scrap-corner { pointer-events:none; }
+.scrap-corner > * { position:absolute; }
+.scrap-route { inset:20px 0 0 10px; width:200px; fill:none; stroke:var(--rust); stroke-width:1.2; stroke-dasharray:3 6; opacity:.45; }
+.scrap-polaroid { top:10px; right:14px; width:170px; margin:0; background:var(--card); padding:9px 9px 32px; box-shadow:0 8px 18px oklch(.25 .03 55 / .22); transform:rotate(4deg); }
+.scrap-polaroid img { width:100%; height:140px; object-fit:cover; filter:sepia(.2) saturate(.85); }
+.scrap-polaroid figcaption { position:absolute; bottom:7px; left:12px; font-family:var(--font-note); font-size:16px; color:var(--foreground); }
+.scrap-tape { position:absolute; top:-11px; left:50px; width:70px; height:22px; transform:rotate(-6deg); background:oklch(.86 .05 80 / .6); box-shadow:0 1px 2px oklch(.3 .03 60 / .12); }
+.scrap-note { top:212px; left:0; width:140px; padding:10px 12px; background:oklch(.93 .05 85); font-family:var(--font-note); font-size:18px; line-height:1.15; color:var(--rust); transform:rotate(-5deg); box-shadow:0 4px 10px oklch(.25 .03 55 / .16); clip-path: polygon(0 4%,8% 0,22% 3%,40% 0,60% 3%,78% 0,100% 3%,100% 100%,0 100%); }
+.scrap-stamp { top:230px; right:6px; width:92px; height:92px; border-radius:50%; border:2px dashed var(--olive); display:grid; place-items:center; color:var(--olive); transform:rotate(12deg); background:oklch(.95 .03 82 / .6); }
+.scrap-stamp span { position:absolute; inset:8px; border:1px solid var(--olive); border-radius:50%; font-family:var(--font-mono); font-size:7.5px; letter-spacing:.12em; display:flex; align-items:center; justify-content:center; text-align:center; padding:12px; line-height:1.4; }
+.scrap-stamp svg { display:none; }
+.scrap-leaf { top:330px; left:30px; width:110px; transform:rotate(-30deg); filter:drop-shadow(0 4px 4px oklch(.3 .04 50 / .25)); }
+.scrap-mountain { top:345px; right:20px; width:80px; fill:none; stroke:var(--foreground); stroke-width:1.3; stroke-linejoin:round; opacity:.55; }
+.scrap-annot { top:405px; right:0; font-family:var(--font-note); font-size:17px; color:var(--muted-foreground); transform:rotate(-3deg); }
+@media (min-width: 900px) and (max-width: 1199px), (max-width: 599px) {
+  .scrap-corner { position:relative; height:250px; margin-top:28px; max-width:360px; }
+  .scrap-polaroid { width:140px; } .scrap-polaroid img { height:110px; }
+  .scrap-note { top:150px; left:0; } .scrap-stamp { top:140px; right:10px; width:80px; height:80px; }
+  .scrap-leaf, .scrap-mountain, .scrap-annot, .scrap-route { display:none; }
+}
+
+/* ===== Chapter label stubs on every page ===== */
+.page-heading { position:relative; }
+.page-heading > div:first-child > .eyebrow { display:inline-flex; padding:5px 14px 5px 12px; background:oklch(.92 .05 80); border:1px dashed oklch(.6 .08 45 / .5); transform:rotate(-1.2deg); clip-path: polygon(0 0,100% 0,96% 50%,100% 100%,0 100%,4% 50%); }
+.page-heading::after { content:""; position:absolute; right:90px; top:-6px; width:64px; height:64px; border-radius:50%; border:1.5px solid oklch(.5 .1 30 / .35); background: radial-gradient(circle, transparent 52%, oklch(.5 .1 30 / .25) 53% 55%, transparent 56%); transform:rotate(-14deg); pointer-events:none; }
+@media (max-width: 760px) { .page-heading::after { display:none; } .brand-tagline { font-size:9px; } }
