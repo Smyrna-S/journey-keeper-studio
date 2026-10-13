@@ -525,3 +525,14 @@
 .page-heading > div:first-child > .eyebrow { display:inline-flex; padding:5px 14px 5px 12px; background:oklch(.92 .05 80); border:1px dashed oklch(.6 .08 45 / .5); transform:rotate(-1.2deg); clip-path: polygon(0 0,100% 0,96% 50%,100% 100%,0 100%,4% 50%); }
 .page-heading::after { content:""; position:absolute; right:90px; top:-6px; width:64px; height:64px; border-radius:50%; border:1.5px solid oklch(.5 .1 30 / .35); background: radial-gradient(circle, transparent 52%, oklch(.5 .1 30 / .25) 53% 55%, transparent 56%); transform:rotate(-14deg); pointer-events:none; }
 @media (max-width: 760px) { .page-heading::after { display:none; } .brand-tagline { font-size:9px; } }
+@media (min-width: 1200px) {
+  .diary-left { padding-right:230px; }
+  .diary-left h1 { font-size:46px; }
+  .scrap-corner { width:200px; right:18px; }
+  .scrap-polaroid { width:150px; } .scrap-polaroid img { height:120px; }
+  .scrap-note { top:190px; width:128px; font-size:16px; }
+  .scrap-stamp { top:215px; width:82px; height:82px; }
+}
+.scrap-leaf { top:318px; left:-10px; width:90px; }
+.scrap-annot { top:420px; right:0; }
+@media (max-width: 599px) { .scrap-stamp { top:165px; right:auto; left:170px; } .scrap-corner { height:270px; } }
